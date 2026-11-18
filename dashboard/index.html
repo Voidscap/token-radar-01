@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — radar-2</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>Token Launch Radar</h1>
+    <p class="sub">Protocols that record no token yet, ranked by what the token would be worth if the protocol's record stayed as it is.</p>
+    <p class="meta" id="meta">Loading snapshot…</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="model-box">
+    <h2>How the value is priced</h2>
+    <p id="model-text">Loading model…</p>
+    <p class="fine">The multiple is not a guess: for each category it is the median market-cap-to-TVL ratio of the snapshot's own live-token protocols in that category (global median where a category has fewer than three priced protocols). A protocol that records no token is never said to have none — its record may simply not carry one.</p>
+  </section>
+
+  <section class="card controls">
+    <div class="views" role="tablist">
+      <button id="view-board" class="view-btn active" type="button">Board</button>
+      <button id="view-live" class="view-btn" type="button">Live tokens</button>
+    </div>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search name or slug…" aria-label="Search protocols">
+      <select id="cat" aria-label="Filter by category"><option value="">All categories</option></select>
+      <select id="chain" aria-label="Filter by chain"><option value="">All chains</option></select>
+      <label class="check"><input id="watch-only" type="checkbox"> Watchlist only</label>
+    </div>
+  </section>
+
+  <section class="card" id="board-card">
+    <div class="table-wrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th data-sort="rank" class="num">#</th>
+            <th data-sort="name">Protocol</th>
+            <th data-sort="category">Category</th>
+            <th data-sort="chains">Chains</th>
+            <th data-sort="tvl_usd" class="num">TVL</th>
+            <th data-sort="change_7d" class="num">7d</th>
+            <th data-sort="age_days" class="num">Age</th>
+            <th data-sort="implied_value_usd" class="num">Implied value</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="fine" id="count"></p>
+  </section>
+
+  <section class="card hidden" id="live-card">
+    <h2>Live tokens — the calibration source</h2>
+    <p class="fine">Protocols whose token already trades, by market cap. Their market-cap-to-TVL ratios are what prices the board's categories. These are the market's own values, never a model's.</p>
+    <div class="table-wrap">
+      <table id="live">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th class="num">TVL</th>
+            <th class="num">Market cap</th>
+            <th class="num">Mcap / TVL</th>
+          </tr>
+        </thead>
+        <tbody id="live-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card hidden" id="detail-card">
+    <h2 id="detail-title">Protocol</h2>
+    <div id="detail-body"></div>
+  </section>
+
+  <footer class="fine" id="foot"></footer>
+</main>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
